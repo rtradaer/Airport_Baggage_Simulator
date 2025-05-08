@@ -39,14 +39,24 @@ int Random::generate_ID()
 
 void Random::generate_BaggageItem(Passenger& p, int item_count, int baggage_percent)
 {
-    for (int i = 0; i < item_count; i++) {
-        int random_number = generate_number(1, 100);
-        if (random_number <= baggage_percent) {
+    int random_number = generate_number(1, 100);
+    if (random_number <= baggage_percent) {
+        int dang_item_count_random = generate_number(1, item_count);
+        for (int i = 0; i < dang_item_count_random; i++) {
             int random_index = generate_number(0, 4);
             std::string item = baggage_items_dangerous[random_index];
             p.add_baggage(item);
-            continue;
         }
+        for (int i = 0; i < item_count - dang_item_count_random; i++) {
+            int random_index = generate_number(0, 24);
+            std::string item = baggage_items[random_index];
+            p.add_baggage(item);
+        }
+        return;
+    }
+
+    // DEFAULT (NO DANGEROUS ITEM)
+    for (int i = 0; i < item_count; i++) {
         int random_index = generate_number(0, 24);
         std::string item = baggage_items[random_index];
         p.add_baggage(item);
