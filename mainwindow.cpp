@@ -100,16 +100,39 @@ void MainWindow::finalReport()
 
 void MainWindow::loadPassengerData(int passenger_count)
 {
-    Random::generate_passenger(passenger_count,10,10);
-    total_passenger += passenger_count;
+    if (Random::PassengerQueue.empty())
+    {
+        Random::generate_passenger(passenger_count,10,10);
+        total_passenger += passenger_count;
 
-    std::queue<Passenger> temp_queue = Random::PassengerQueue;
-    while (!temp_queue.empty()) {
-        QString q = QString("Passenger #%1").arg(temp_queue.front().get_ID());
+        std::queue<Passenger> temp_queue = Random::PassengerQueue;
+        while (!temp_queue.empty()) {
+            QString q = QString("Passenger #%1").arg(temp_queue.front().get_ID());
 
-        ui->PassengerWidget->addItem(q);
+            ui->PassengerWidget->addItem(q);
 
-        temp_queue.pop();
+            temp_queue.pop();
+        }
+    }
+    else
+    {
+        int size = Random::PassengerQueue.size();
+
+        Random::generate_passenger(passenger_count,10,10);
+        total_passenger += passenger_count;
+
+        std::queue<Passenger> temp_queue = Random::PassengerQueue;
+        for (int i = 0; i < size ; i++)
+            temp_queue.pop();
+
+        while (!temp_queue.empty()) {
+            QString q = QString("Passenger #%1").arg(temp_queue.front().get_ID());
+
+            ui->PassengerWidget->addItem(q);
+
+            temp_queue.pop();
+        }
+
     }
 }
 
@@ -148,11 +171,7 @@ void MainWindow::on_loadData_clicked()
 {
     int passenger_count = ui->spinBox->value();
     logMessage("Loaded "+QString::number(passenger_count) + " passengers.");
-
     this->loadPassengerData(passenger_count);
-
-    ui->loadData->setEnabled(false);
-
 }
 
 
@@ -240,13 +259,12 @@ void MainWindow::on_checkItemButton_clicked()
         if(is_dangerous && alarm_triggered)
         {
             currentItem->setBackground(red);
-            logMessage("WARNING! Suspicious item detected: " + QString::fromStdString(s) + " Alarm Triggered");
+            logMessage("WARNING! Suspicious item detected: <" + QString::fromStdString(s) + "> Alarm Triggered");
             alarm_count++;
-            alarm_triggered = false;
-
             // LOG REPORT ALARM TRIGGIRED PASSENGERS
             QString s = QString::number((Random::PassengerQueue.front().get_ID()));
             alarm_triggered_passengers.insert(s);
+            alarm_triggered = false;
 
             return;
         }
