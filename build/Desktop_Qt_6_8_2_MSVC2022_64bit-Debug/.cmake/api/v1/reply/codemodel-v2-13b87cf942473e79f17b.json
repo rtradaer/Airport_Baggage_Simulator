@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-b0e586476c36745de088.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Bagaj",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Bagaj::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Bagaj-Debug-3aec79313de8cdc48978.json",
+					"name" : "Bagaj",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Bagaj_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Bagaj_autogen-Debug-236eeaa5ebe64fb311cb.json",
+					"name" : "Bagaj_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Bagaj_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Bagaj_autogen_timestamp_deps-Debug-980559e7512da18ae661.json",
+					"name" : "Bagaj_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/msi/Desktop/QT/Bagaj/build/Desktop_Qt_6_8_2_MSVC2022_64bit-Debug",
+		"source" : "C:/Users/msi/Desktop/QT/Bagaj"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}
